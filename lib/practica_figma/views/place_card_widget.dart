@@ -12,7 +12,6 @@ class PlaceCardWidget extends StatelessWidget {
     required this.city,
     required this.rating,
     required this.country,
-
     super.key,
   });
   @override
@@ -45,7 +44,6 @@ class PlaceCardWidget extends StatelessWidget {
                 ),
               ),
             ),
-
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(
@@ -60,7 +58,6 @@ class PlaceCardWidget extends StatelessWidget {
                   },
                 );
               },
-
               child: Container(
                 padding: EdgeInsets.all(10),
                 height: 75,
@@ -100,55 +97,62 @@ class PlaceCardWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 14,
-                                right: 16,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 13,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 14,
+                                  right: 16,
+                                ),
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/PracticaFigma/icons/ubi_icon.png"),
+                                  width: 16,
+                                  height: 16,
+                                ),
                               ),
-                              child: Image(
-                                image: AssetImage("assets/PracticaFigma/icons/ubi_icon.png"),
-                                width: 16,
-                                height: 16,
+                              Text(
+                                "$city, $country",
+                                style: TextStyle(
+                                  color: Color.fromRGBO(202, 200, 200, 1),
+                                  fontSize: 14,
+                                  fontFamily: "Roboto",
+                                ),
                               ),
-                            ),
-                            Text(
-                              "$city, $country",
-                              style: TextStyle(
-                                color: Color.fromRGBO(202, 200, 200, 1),
-                                fontSize: 14,
-                                fontFamily: "Roboto",
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  right: 6,
+                                ),
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/PracticaFigma/icons/start_icon.png"),
+                                  width: 12,
+                                  height: 12,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 6),
-                              child: Image(
-                                image: AssetImage("assets/PracticaFigma/icons/start_icon.png"),
-                                width: 12,
-                                height: 12,
+                              Text(
+                                rating.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: "Roboto",
+                                ),
                               ),
-                            ),
-                            Text(
-                              rating.toString(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontFamily: "Roboto",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

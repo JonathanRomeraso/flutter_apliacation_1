@@ -8,6 +8,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Hi, David 👋",
+              style: TextStyle(
+                fontSize: 24,
+                fontFamily: "Montserrat",
+                color: Color.fromRGBO(47, 47, 47, 1),
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Text(
+              "Explore the world",
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: "Inter",
+                color: Color.fromRGBO(136, 136, 136, 1),
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage:
+                  AssetImage("assets/PracticaFigma/avatar/avatar1.png"),
+            ),
+          ),
+        ],
+      ),
+      */
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -35,8 +74,8 @@ class HomeScreen extends StatelessWidget {
                     height: 75,
                     width: 75,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/PracticaFigma/avatar/avatar1.png")
-                    ),
+                        backgroundImage: AssetImage(
+                            "assets/PracticaFigma/avatar/avatar1.png")),
                   ),
                 ],
               ),
@@ -76,7 +115,9 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 26),
-                          child: Image.asset("assets/PracticaFigma/icons/line_icon.png", width: 32),
+                          child: Image.asset(
+                              "assets/PracticaFigma/icons/line_icon.png",
+                              width: 32),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 18.23),
@@ -162,10 +203,24 @@ class HomeScreen extends StatelessWidget {
                     country: "America",
                   ),
                   PlaceCardWidget(
-                    imageUrl: "assets/PracticaFigma/images/places/Place2.png",
-                    placeName: "Andes Mountain",
-                    city: "South",
-                    rating: 4.7,
+                    imageUrl: "assets/PracticaFigma/images/places/Place3.webp",
+                    placeName: "Terrazas de arroz",
+                    city: "Banaue",
+                    rating: 4.6,
+                    country: "Filipinas",
+                  ),
+                  PlaceCardWidget(
+                    imageUrl: "assets/PracticaFigma/images/places/Place4.webp",
+                    placeName: "Taj Mahal",
+                    city: "Agra",
+                    rating: 4.5,
+                    country: "India",
+                  ),
+                  PlaceCardWidget(
+                    imageUrl: "assets/PracticaFigma/images/places/Place6.webp",
+                    placeName: "Gran Cañón",
+                    city: "Arizona",
+                    rating: 4.4,
                     country: "America",
                   ),
                 ],
@@ -187,7 +242,9 @@ class HomeScreen extends StatelessWidget {
               alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
-                Image.asset("assets/PracticaFigma/icons/navigation/icon_home.png", height: 22.97),
+                Image.asset(
+                    "assets/PracticaFigma/icons/navigation/icon_home.png",
+                    height: 22.97),
                 Positioned(
                   bottom: -15,
                   child: Container(
@@ -208,7 +265,6 @@ class HomeScreen extends StatelessWidget {
               "assets/PracticaFigma/icons/navigation/icon_clock.png",
               height: 22.97,
             ),
-
             label: "",
           ),
           BottomNavigationBarItem(
@@ -219,7 +275,9 @@ class HomeScreen extends StatelessWidget {
             label: "",
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/PracticaFigma/icons/navigation/icon_user.png", height: 22.97),
+            icon: Image.asset(
+                "assets/PracticaFigma/icons/navigation/icon_user.png",
+                height: 22.97),
             label: "",
           ),
         ],
