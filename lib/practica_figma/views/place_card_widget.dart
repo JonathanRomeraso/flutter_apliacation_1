@@ -44,117 +44,119 @@ class PlaceCardWidget extends StatelessWidget {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  "/Place",
-                  arguments: {
-                    'imageUrl': imageUrl,
-                    'placeName': placeName,
-                    'city': city,
-                    'country': country,
-                    'rating': rating,
-                  },
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.all(10),
-                height: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(15),
-                    bottom: Radius.circular(15),
+            SingleChildScrollView(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/Place",
+                    arguments: {
+                      'imageUrl': imageUrl,
+                      'placeName': placeName,
+                      'city': city,
+                      'country': country,
+                      'rating': rating,
+                    },
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(15),
+                      bottom: Radius.circular(15),
+                    ),
+                    color: Colors.black.withOpacity(0.6),
                   ),
-                  color: Colors.black.withOpacity(0.6),
-                ),
-                ////////////////////////////////////////////////////////////////////////////////////
-                // Data
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: Row(
-                        children: [
-                          Text(
-                            "$placeName, ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromRGBO(202, 200, 200, 1),
-                              fontWeight: FontWeight.w500,
+                  ////////////////////////////////////////////////////////////////////////////////////
+                  // Data
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Row(
+                          children: [
+                            Text(
+                              "$placeName, ",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color.fromRGBO(202, 200, 200, 1),
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          Text(
-                            city,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
+                            Text(
+                              city,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 13,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 13,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 14,
+                                    right: 16,
+                                  ),
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assets/PracticaFigma/icons/ubi_icon.png"),
+                                    width: 16,
+                                    height: 16,
+                                  ),
+                                ),
+                                Text(
+                                  "$city, $country",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(202, 200, 200, 1),
+                                    fontSize: 14,
+                                    fontFamily: "Roboto",
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    right: 6,
+                                  ),
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assets/PracticaFigma/icons/start_icon.png"),
+                                    width: 12,
+                                    height: 12,
+                                  ),
+                                ),
+                                Text(
+                                  rating.toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: "Roboto",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 14,
-                                  right: 16,
-                                ),
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/PracticaFigma/icons/ubi_icon.png"),
-                                  width: 16,
-                                  height: 16,
-                                ),
-                              ),
-                              Text(
-                                "$city, $country",
-                                style: TextStyle(
-                                  color: Color.fromRGBO(202, 200, 200, 1),
-                                  fontSize: 14,
-                                  fontFamily: "Roboto",
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  right: 6,
-                                ),
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/PracticaFigma/icons/start_icon.png"),
-                                  width: 12,
-                                  height: 12,
-                                ),
-                              ),
-                              Text(
-                                rating.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: "Roboto",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
