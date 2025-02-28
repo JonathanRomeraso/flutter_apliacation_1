@@ -44,17 +44,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Android 
+# Ignorar las carpetas de compilación específicas de cada plataforma
 /android/
+/ios/
 /linux/
 /macos/
-/web/
-/ios/
 /windows/
-
-.android/
-.linux/
-.macos/
-.web/
-.ios/
-.windows/
+/web/
