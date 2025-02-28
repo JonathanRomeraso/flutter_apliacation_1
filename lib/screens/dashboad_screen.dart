@@ -10,7 +10,9 @@ class DashboadScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bienvenido",),
+        title: Text(
+          "Bienvenido",
+        ),
         actions: [
           DarlightButton(
               type: Darlights.DarlightFour,
@@ -38,11 +40,18 @@ class DashboadScreen extends StatelessWidget {
           title: Text("Practica Figma"),
           subtitle: Text("Fronted App"),
           trailing: GestureDetector(
-              onDoubleTap: () {
+              onTap: () {
                 Navigator.pushNamed(context, "/splash");
               },
               child: Icon(Icons.chevron_right)),
-        )
+        ),
+        ListTile(
+          onTap: () => Navigator.pushNamed(context, "/todo"),
+          leading: Icon(Icons.task),
+          title: Text("Todo App"),
+          subtitle: Text("Task List"),
+          trailing: Icon(Icons.chevron_right),
+        ),
       ])),
       //endDrawer: Drawer(),
     );

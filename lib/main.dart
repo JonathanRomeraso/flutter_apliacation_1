@@ -5,6 +5,7 @@ import 'package:flutter_application_1/practica_figma/screens/splash_screen_figma
 import 'package:flutter_application_1/screens/dashboad_screen.dart';
 import 'package:flutter_application_1/screens/list_students_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
+import 'package:flutter_application_1/screens/todo_screen.dart';
 import 'package:flutter_application_1/utils/global_values.dart';
 
 void main() => runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
               "/home": (context) => HomeScreen(),
               "/Place": (context) => PlaceScreen(),
               "/splash":(context) => SplashScreenFigma(),
+              "/todo": (context) => const TodoScreen(),
             },
             title: 'Material App',
             home: SplashScreen(),
