@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_application_1/database/task_database.dart';
 import 'package:flutter_application_1/models/todo_model.dart';
 
@@ -11,6 +12,10 @@ class TodoScreen extends StatefulWidget {
 
 class _TodoScreenState extends State<TodoScreen> {
   TaskDatabase? database;
+  TextEditingController conTitle = TextEditingController();
+  TextEditingController conDesc = TextEditingController();
+  TextEditingController conDate = TextEditingController();
+  TextEditingController conStts = TextEditingController();
 
   @override
   void initState() {
@@ -79,6 +84,47 @@ class _TodoScreenState extends State<TodoScreen> {
         builder: (context) {
           return AlertDialog(
             title: Text("Add Task"),
+            content: Container(
+              height: 280,
+              width: 300,
+              child: ListView(children: [
+                TextFormField(
+                    controller: conTitle,
+                    decoration:
+                        InputDecoration(hintText: "Titulo de la tarea")),
+                TextFormField(
+                  controller: conDesc,
+                  maxLines: 3,
+                  decoration:
+                      InputDecoration(hintText: "Descripcion de la tarea"),
+                ),
+                TextFormField(
+                  readOnly: true,
+                  controller: conDate,
+                  decoration: InputDecoration(hintText: "Fecha de la tarea"),
+                  onTap: () async {
+                    DateTime? dateTodo = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100));
+                    if (dateTodo != null) {
+                      String formattedDate =
+                          DateFormat('yyyy-MM-dd').format(dateTodo);
+                      setState(() {
+                        conDate.text = formattedDate;
+                      });
+                    } else {
+                      print("Date is not selected");
+                    }
+                  },
+                ),
+                TextFormField(
+                    controller: conStts,
+                    decoration:
+                        InputDecoration(hintText: "Estatus de la tarea")),
+              ]),
+            ),
           );
         });
   }
