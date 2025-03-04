@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/practica_figma/screens/home_screen.dart';
 import 'package:flutter_application_1/practica_figma/screens/place_screen.dart';
-import 'package:flutter_application_1/screens/sign_up_screen.dart';
+import 'package:flutter_application_1/screens/login_screen.dart';
+import 'package:flutter_application_1/practica_dos/screens/sign_up_screen.dart';
 import 'package:flutter_application_1/practica_figma/screens/splash_screen_figma.dart';
 import 'package:flutter_application_1/screens/dashboad_screen.dart';
 import 'package:flutter_application_1/screens/list_students_screen.dart';
@@ -26,12 +27,14 @@ class MyApp extends StatelessWidget {
               "/dash": (context) => DashboadScreen(),
               "/home": (context) => HomeScreen(),
               "/Place": (context) => PlaceScreen(),
-              "/splash":(context) => SplashScreenFigma(),
+              "/splash": (context) => SplashScreenFigma(),
               "/todo": (context) => const TodoScreen(),
               "/signUp": (context) => const SignUpScreen(),
+              "/login": (context) => const LoginScreen(),
             },
             title: 'Material App',
-            home: SplashScreen(),
+            home: SignUpScreen(),
+            //home: SplashScreen(),
           );
         });
   }
