@@ -90,8 +90,24 @@ class _DashboadScreenState extends State<DashboadScreen> {
                   GlobalValues.themeApp.value = ThemeSettings.darkTheme();
                 }
               }),
-              */
+             
+          Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.color_lens),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            ),
+          ),
+           */
         ],
+        /*
+        leading: IconButton(
+          icon: Icon(Icons.menu_open_sharp),
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+        ),
+        */
       ),
       drawer: Drawer(
           child: ListView(children: [

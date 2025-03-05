@@ -8,20 +8,22 @@ import 'package:flutter_application_1/screens/dashboad_screen.dart';
 import 'package:flutter_application_1/screens/list_students_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/screens/todo_screen.dart';
-import 'package:flutter_application_1/utils/auth_preferences.dart';
+//import 'package:flutter_application_1/utils/auth_preferences.dart';
 import 'package:flutter_application_1/utils/global_values.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalValues.loadPreferences();
-  bool isLogged = await AuthPreferences.isLoggedIn();
+  //bool isLogged = await AuthPreferences.isLoggedIn();
 
-  runApp(MyApp(isLogged: isLogged));
+  runApp(MyApp());
+  //runApp(MyApp(isLogged: isLogged));
 }
 
 class MyApp extends StatelessWidget {
-    final bool isLogged;
-  const MyApp({super.key, required this.isLogged});
+  //final bool isLogged;
+  //const MyApp({super.key, required this.isLogged});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +52,10 @@ class MyApp extends StatelessWidget {
                 "/login": (context) => const LoginScreen(),
               },
               title: 'Material App',
-              home: isLogged ? const DashboadScreen() : const LoginScreen(),
+              //home: isLogged ? const DashboadScreen() : const LoginScreen(),
               //home: const SignUpScreen(),
               //home: isLogged ? const DashboadScreen() : const LoginScreen(),
-              //home: SplashScreen(),
+              home: SplashScreen(),
             );
           },
         );
