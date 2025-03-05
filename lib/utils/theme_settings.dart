@@ -82,6 +82,25 @@ class ThemeSettings {
     );
   }
 
+  static ThemeData getThemeByName(String themeName) {
+    switch (themeName) {
+      case "dark":
+        return darkTheme();
+      case "blue":
+        return blueTheme();
+      case "green":
+        return greenTheme();
+      case "purple":
+        return purpleDarkTheme();
+      case "cLight":
+        return ThemeData.light();
+      case "cDark":
+        return ThemeData.dark();
+      default:
+        return lightTheme();
+    }
+  }
+
   static TextTheme _getTextTheme() {
     return TextTheme(
       bodyLarge: TextStyle(fontFamily: GlobalValues.fontFamily.value),

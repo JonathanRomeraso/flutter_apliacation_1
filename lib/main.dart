@@ -10,7 +10,11 @@ import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/screens/todo_screen.dart';
 import 'package:flutter_application_1/utils/global_values.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GlobalValues.loadPreferences();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,24 +22,76 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: GlobalValues.themeApp,
-        builder: (context, value, child) {
-          return MaterialApp(
-            theme: value,
-            routes: {
-              "/list": (context) => ListStudentsScreen(),
-              "/dash": (context) => DashboadScreen(),
-              "/home": (context) => HomeScreen(),
-              "/Place": (context) => PlaceScreen(),
-              "/splash": (context) => SplashScreenFigma(),
-              "/todo": (context) => const TodoScreen(),
-              "/signUp": (context) => const SignUpScreen(),
-              "/login": (context) => const LoginScreen(),
-            },
-            title: 'Material App',
-            home: SignUpScreen(),
-            //home: SplashScreen(),
-          );
-        });
+      valueListenable: GlobalValues.themeApp,
+      builder: (context, themeValue, child) {
+        return ValueListenableBuilder<String>(
+          valueListenable: GlobalValues.fontFamily,
+          builder: (context, fontValue, child) {
+            return MaterialApp(
+              theme: themeValue.copyWith(
+                textTheme: TextTheme(
+                  bodyLarge: TextStyle(fontFamily: fontValue),
+                  bodyMedium: TextStyle(fontFamily: fontValue),
+                  titleLarge: TextStyle(fontFamily: fontValue),
+                ),
+              ),
+              routes: {
+                "/list": (context) => ListStudentsScreen(),
+                "/dash": (context) => DashboadScreen(),
+                "/home": (context) => HomeScreen(),
+                "/Place": (context) => PlaceScreen(),
+                "/splash": (context) => SplashScreenFigma(),
+                "/todo": (context) => const TodoScreen(),
+                "/signUp": (context) => const SignUpScreen(),
+                "/login": (context) => const LoginScreen(),
+              },
+              title: 'Material App',
+              home: const SignUpScreen(),
+            );
+          },
+        );
+      },
+    );
   }
 }
+/*
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: GlobalValues.themeApp,
+      builder: (context, themeValue, child) {
+        return ValueListenableBuilder(
+            valueListenable: GlobalValues.fontFamily,
+            builder: (context, fontValue, child) {
+              return MaterialApp(
+                theme: themeValue.copyWith(
+                  textTheme: TextTheme(
+                    bodyLarge: TextStyle(fontFamily: fontValue),
+                    bodyMedium: TextStyle(fontFamily: fontValue),
+                    titleLarge: TextStyle(fontFamily: fontValue),
+                  ),
+                ),
+
+
+                
+                routes: {
+                  "/list": (context) => ListStudentsScreen(),
+                  "/dash": (context) => DashboadScreen(),
+                  "/home": (context) => HomeScreen(),
+                  "/Place": (context) => PlaceScreen(),
+                  "/splash": (context) => SplashScreenFigma(),
+                  "/todo": (context) => const TodoScreen(),
+                  "/signUp": (context) => const SignUpScreen(),
+                  "/login": (context) => const LoginScreen(),
+                },
+                title: 'Material App',
+                home: const SignUpScreen(),
+                //home: SplashScreen(),
+              );
+            });
+      },
+    );
+  }
+}
+
+*/
