@@ -1,10 +1,13 @@
 //import 'package:dark_light_button/dark_light_button.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/practica_dos/views/build_font_tile.dart';
 import 'package:flutter_application_1/practica_dos/views/build_theme_tile.dart';
 import 'package:flutter_application_1/utils/auth_preferences.dart';
-//import 'package:flutter_application_1/utils/global_values.dart';
 import 'package:flutter_application_1/utils/theme_settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboadScreen extends StatefulWidget {
   const DashboadScreen({super.key});
@@ -15,16 +18,36 @@ class DashboadScreen extends StatefulWidget {
 
 class _DashboadScreenState extends State<DashboadScreen> {
   bool _isSessionActive = false;
+  late Image _imageWidget = Image.network("https://i.pravatar.cc/207");
+  late String _username = '';
+  late String _email = '';
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
-    _loadSessionState();
+    _loadUserData();
   }
 
-  Future<void> _loadSessionState() async {
+  Future<void> _loadUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? imageBase64 = prefs.getString('image');
+    String? username = prefs.getString('username');
+    String? email = prefs.getString('email');
     bool isLoggedIn = await AuthPreferences.isLoggedIn();
+
     setState(() {
+      _isLoading = false;
+      _username = username ?? 'Usuario no disponible';
+      _email = email ?? 'Correo no disponible';
       _isSessionActive = isLoggedIn;
+
+      if (imageBase64 != null) {
+        Uint8List bytes = base64Decode(imageBase64);
+        _imageWidget = Image.memory(bytes);
+      } else {
+        _imageWidget = Image.network("https://i.pravatar.cc/207");
+      }
     });
   }
 
@@ -73,11 +96,12 @@ class _DashboadScreenState extends State<DashboadScreen> {
       drawer: Drawer(
           child: ListView(children: [
         UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: NetworkImage("https://i.pravatar.cc/207"),
-            ),
-            accountName: Text('Jonathan Rodriguez Romero'),
-            accountEmail: Text("21030021@itcelaya.edu.mx")),
+          currentAccountPicture: CircleAvatar(
+            backgroundImage: _imageWidget.image,
+          ),
+          accountName: _isLoading ? Text("Cargando...") : Text(_username),
+          accountEmail: _isLoading ? Text("Cargando...") : Text(_email),
+        ),
         ListTile(
           leading: Icon(Icons.design_services),
           title: Text("Practica Figma"),
