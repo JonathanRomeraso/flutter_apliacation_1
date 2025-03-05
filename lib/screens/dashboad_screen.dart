@@ -2,11 +2,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/practica_dos/views/build_font_tile.dart';
 import 'package:flutter_application_1/practica_dos/views/build_theme_tile.dart';
+import 'package:flutter_application_1/utils/auth_preferences.dart';
 //import 'package:flutter_application_1/utils/global_values.dart';
 import 'package:flutter_application_1/utils/theme_settings.dart';
 
-class DashboadScreen extends StatelessWidget {
+class DashboadScreen extends StatefulWidget {
   const DashboadScreen({super.key});
+
+  @override
+  State<DashboadScreen> createState() => _DashboadScreenState();
+}
+
+class _DashboadScreenState extends State<DashboadScreen> {
+  bool _isSessionActive = false;
+  @override
+  void initState() {
+    super.initState();
+    _loadSessionState();
+  }
+
+  Future<void> _loadSessionState() async {
+    bool isLoggedIn = await AuthPreferences.isLoggedIn();
+    setState(() {
+      _isSessionActive = isLoggedIn;
+    });
+  }
+
+  // Guardar estado en SharedPreferences
+  Future<void> _toggleSession(bool value) async {
+    if (value) {
+      await AuthPreferences.saveLogin();
+    } else {
+      await AuthPreferences.logout();
+    }
+    setState(() {
+      _isSessionActive = value;
+    });
+  }
+
+  Future<void> _logout() async {
+    await AuthPreferences.logout();
+    setState(() {
+      _isSessionActive = false;
+    });
+    Navigator.pushReplacementNamed(context, "/login");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +94,20 @@ class DashboadScreen extends StatelessWidget {
           title: Text("Todo App"),
           subtitle: Text("Task List"),
           trailing: Icon(Icons.chevron_right),
+        ),
+        const Divider(),
+        SwitchListTile(
+          value: _isSessionActive,
+          title: const Text("Mantener iniciada la sesion"),
+          onChanged: (value) => _toggleSession(value),
+        ),
+        ListTile(
+          leading: const Icon(Icons.exit_to_app, color: Colors.red),
+          title:
+              const Text("Cerrar sesión", style: TextStyle(color: Colors.red)),
+          onTap: () async {
+            await _logout();
+          },
         ),
       ])),
       endDrawer: Drawer(
@@ -117,14 +171,12 @@ class DashboadScreen extends StatelessWidget {
               themeKey: "cDark",
               theme: ThemeData.dark(),
             ),
-            const Divider(), // Línea divisoria
-
+            const Divider(),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Selecciona una fuente",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
-
             buildFontTile(context, "Poppins"),
             buildFontTile(context, "Swar"),
             buildFontTile(context, "Montserrat"),

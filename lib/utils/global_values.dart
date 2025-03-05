@@ -21,8 +21,4 @@ class GlobalValues {
       fontFamily.value = savedFont;
     }
   }
-  static void updateFont(String font) async {
-    fontFamily.value = font;
-    await ThemePreferences.saveFont(font); 
-  }
 }

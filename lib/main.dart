@@ -8,16 +8,20 @@ import 'package:flutter_application_1/screens/dashboad_screen.dart';
 import 'package:flutter_application_1/screens/list_students_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/screens/todo_screen.dart';
+import 'package:flutter_application_1/utils/auth_preferences.dart';
 import 'package:flutter_application_1/utils/global_values.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalValues.loadPreferences();
-  runApp(const MyApp());
+  bool isLogged = await AuthPreferences.isLoggedIn();
+
+  runApp(MyApp(isLogged: isLogged));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+    final bool isLogged;
+  const MyApp({super.key, required this.isLogged});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,10 @@ class MyApp extends StatelessWidget {
                 "/login": (context) => const LoginScreen(),
               },
               title: 'Material App',
-              home: const SignUpScreen(),
+              home: isLogged ? const DashboadScreen() : const LoginScreen(),
+              //home: const SignUpScreen(),
+              //home: isLogged ? const DashboadScreen() : const LoginScreen(),
+              //home: SplashScreen(),
             );
           },
         );
@@ -54,44 +61,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-/*
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: GlobalValues.themeApp,
-      builder: (context, themeValue, child) {
-        return ValueListenableBuilder(
-            valueListenable: GlobalValues.fontFamily,
-            builder: (context, fontValue, child) {
-              return MaterialApp(
-                theme: themeValue.copyWith(
-                  textTheme: TextTheme(
-                    bodyLarge: TextStyle(fontFamily: fontValue),
-                    bodyMedium: TextStyle(fontFamily: fontValue),
-                    titleLarge: TextStyle(fontFamily: fontValue),
-                  ),
-                ),
-
-
-                
-                routes: {
-                  "/list": (context) => ListStudentsScreen(),
-                  "/dash": (context) => DashboadScreen(),
-                  "/home": (context) => HomeScreen(),
-                  "/Place": (context) => PlaceScreen(),
-                  "/splash": (context) => SplashScreenFigma(),
-                  "/todo": (context) => const TodoScreen(),
-                  "/signUp": (context) => const SignUpScreen(),
-                  "/login": (context) => const LoginScreen(),
-                },
-                title: 'Material App',
-                home: const SignUpScreen(),
-                //home: SplashScreen(),
-              );
-            });
-      },
-    );
-  }
-}
-
-*/

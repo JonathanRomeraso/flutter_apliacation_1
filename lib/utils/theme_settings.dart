@@ -82,6 +82,18 @@ class ThemeSettings {
     );
   }
 
+  static ThemeData classicLightTheme() {
+    return ThemeData.light().copyWith(
+      textTheme: _getTextTheme(),
+    );
+  }
+
+  static ThemeData classicDarkTheme() {
+    return ThemeData.dark().copyWith(
+      textTheme: _getTextTheme(),
+    );
+  }
+
   static ThemeData getThemeByName(String themeName) {
     switch (themeName) {
       case "dark":
@@ -93,9 +105,9 @@ class ThemeSettings {
       case "purple":
         return purpleDarkTheme();
       case "cLight":
-        return ThemeData.light();
+        return classicLightTheme();
       case "cDark":
-        return ThemeData.dark();
+        return classicDarkTheme();
       default:
         return lightTheme();
     }
