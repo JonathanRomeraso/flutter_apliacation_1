@@ -9,6 +9,7 @@ class GlobalValues {
 
   static ValueNotifier themeApp = ValueNotifier(ThemeSettings.lightTheme());
   static ValueNotifier<String> fontFamily = ValueNotifier("Poppins");
+  static ValueNotifier updList = ValueNotifier(false);
 
   static Future<void> loadPreferences() async {
     String? savedTheme = await ThemePreferences.getSavedTheme();

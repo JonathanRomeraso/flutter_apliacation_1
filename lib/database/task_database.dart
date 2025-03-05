@@ -53,9 +53,8 @@ class TaskDatabase {
   }
 
   Future<List<TodoModel>> SELECT() async {
-        final con = await database;
-        var result = await con!.query('todo');
-        return result.map((task) => TodoModel.fromMap(task)).toList();
-
+    final con = await database;
+    var result = await con!.query('todo');
+    return result.map((task) => TodoModel.fromMap(task)).toList();
   }
 }
