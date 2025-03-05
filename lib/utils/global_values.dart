@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/theme_settings.dart';
 
 class GlobalValues {
-  static ValueNotifier isValidating = ValueNotifier(false); 
+  static ValueNotifier isValidating = ValueNotifier(false);
   static ValueNotifier themeApp = ValueNotifier(ThemeData.light());
+  static ValueNotifier<String> fontFamily = ValueNotifier("Poopins");
 }

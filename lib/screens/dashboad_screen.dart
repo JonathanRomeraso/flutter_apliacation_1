@@ -1,6 +1,8 @@
-import 'package:dark_light_button/dark_light_button.dart';
+//import 'package:dark_light_button/dark_light_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/utils/global_values.dart';
+import 'package:flutter_application_1/practica_dos/views/build_font_tile.dart';
+import 'package:flutter_application_1/practica_dos/views/build_theme_tile.dart';
+//import 'package:flutter_application_1/utils/global_values.dart';
 import 'package:flutter_application_1/utils/theme_settings.dart';
 
 class DashboadScreen extends StatelessWidget {
@@ -14,6 +16,7 @@ class DashboadScreen extends StatelessWidget {
           "Bienvenido",
         ),
         actions: [
+          /*
           DarlightButton(
               type: Darlights.DarlightFour,
               options: DarlightFourOption(),
@@ -24,9 +27,9 @@ class DashboadScreen extends StatelessWidget {
                   GlobalValues.themeApp.value = ThemeSettings.darkTheme();
                 }
               }),
+              */
         ],
       ),
-
       drawer: Drawer(
           child: ListView(children: [
         UserAccountsDrawerHeader(
@@ -53,7 +56,74 @@ class DashboadScreen extends StatelessWidget {
           trailing: Icon(Icons.chevron_right),
         ),
       ])),
-      //endDrawer: Drawer(),
+      endDrawer: Drawer(
+        child: Column(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blueGrey),
+              child: Center(
+                child: Text(
+                  "Selecciona un tema",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.light_mode,
+              text: "Modo Claro",
+              theme: ThemeSettings.lightTheme(),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.dark_mode,
+              text: "Modo Oscuro",
+              theme: ThemeSettings.darkTheme(),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.water,
+              text: "Tema Azul",
+              theme: ThemeSettings.blueTheme(),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.eco,
+              text: "Tema Verde",
+              theme: ThemeSettings.greenTheme(),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.nightlight_round,
+              text: "Tema Púrpura Oscuro",
+              theme: ThemeSettings.purpleDarkTheme(),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.light_mode,
+              text: "Classic Claro",
+              theme: ThemeData.light(),
+            ),
+            buildThemeTile(
+              context,
+              icon: Icons.dark_mode,
+              text: "Classic Dark",
+              theme: ThemeData.dark(),
+            ),
+            const Divider(), // Línea divisoria
+
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Selecciona una fuente",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
+
+            buildFontTile(context, "Poppins"),
+            buildFontTile(context, "Swar"),
+            buildFontTile(context, "Montserrat"),
+          ],
+        ),
+      ),
     );
   }
 }
