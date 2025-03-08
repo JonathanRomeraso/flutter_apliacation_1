@@ -8,6 +8,7 @@ import 'dart:io';
 //import 'dart:typed_data';
 import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -24,12 +25,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordConfirm = TextEditingController();
 
   Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
+    var status = await Permission.camera.request();
+
+    if (status.isGranted) {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
+      }
+    } else {
+      customSnackBar(
+          context, "Permiso de cámara denegado", Colors.red, Icons.error);
     }
   }
 
