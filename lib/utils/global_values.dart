@@ -7,7 +7,7 @@ class GlobalValues {
   //static ValueNotifier themeApp = ValueNotifier(ThemeData.light());
   //static ValueNotifier<String> fontFamily = ValueNotifier("Poopins");
 
-  static ValueNotifier themeApp = ValueNotifier(ThemeSettings.lightTheme());
+  static ValueNotifier themeApp = ValueNotifier(ThemeSettings.purpleDarkTheme());
   static ValueNotifier<String> fontFamily = ValueNotifier("Poppins");
   static ValueNotifier updList = ValueNotifier(false);
 
