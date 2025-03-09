@@ -11,10 +11,11 @@ Widget customTextFiel(
         borderRadius: BorderRadius.circular(18),
         borderSide: BorderSide.none,
       ),
-      fillColor: Colors.blueAccent.withValues(alpha: 0.1),
+      //fillColor: Colors.blueAccent.withValues(alpha: 0.1),
       filled: true,
       prefixIcon: Icon(icon),
     ),
     obscureText: obscureText,
+    //style: TextStyle(color: Colors.black),
   );
 }
