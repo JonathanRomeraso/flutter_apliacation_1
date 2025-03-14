@@ -52,3 +52,4 @@ app.*.map.json
 /windows/
 /web/
 .pubspec.lock
+/lib/firebase.json
