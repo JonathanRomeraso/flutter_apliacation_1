@@ -16,6 +16,6 @@ Widget customTextFiel(
       prefixIcon: Icon(icon),
     ),
     obscureText: obscureText,
-    //style: TextStyle(color: Colors.black),
+    style: TextStyle(color: Colors.blueGrey),
   );
 }

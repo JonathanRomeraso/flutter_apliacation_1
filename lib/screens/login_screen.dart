@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/firebase/auth_firebase.dart';
 import 'package:flutter_application_1/practica_dos/views/custom_snack_bar.dart';
 import 'package:flutter_application_1/utils/global_values.dart';
 import 'package:lottie/lottie.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  AuthFirebase? authFirebase;
 
   Future<void> _login() async {
     String email = _emailController.text.trim();
@@ -32,16 +34,45 @@ class _LoginScreenState extends State<LoginScreen> {
     GlobalValues.isValidating.value = true;
     Future.delayed(const Duration(seconds: 2), () {
       GlobalValues.isValidating.value = false;
+
+      authFirebase?.loginUser(email, password).then(
+        (result) {
+          if (result == "success") {
+            Navigator.pushNamed(context, "/dash");
+          } else if (result == "email_not_verified") {
+            customSnackBar(
+              context,
+              "Debes verificar tu correo antes de iniciar sesión",
+              Colors.orange,
+              Icons.warning,
+            );
+          } else {
+            customSnackBar(
+              context,
+              "Usuario o contraseña incorrectos",
+              Colors.redAccent,
+              Icons.error,
+            );
+          }
+        },
+      );
+      /*
       if (storedEmail == email && storedPassword == password) {
         Navigator.pushNamed(context, "/dash");
       } else {
         customSnackBar(context, "Usuario o contraseña incorrectos",
             Colors.redAccent, Icons.error);
       }
+      */
     });
   }
 
   @override
+  initState() {
+    super.initState();
+    authFirebase = AuthFirebase();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -147,4 +178,3 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 }
-

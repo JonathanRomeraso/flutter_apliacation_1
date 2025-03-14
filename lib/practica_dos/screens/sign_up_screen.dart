@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/firebase/auth_firebase.dart';
 import 'package:flutter_application_1/practica_dos/views/pick_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_application_1/practica_dos/views/custom_snack_bar.dart';
@@ -16,6 +17,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  AuthFirebase? authFire;
   File? _image;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -34,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           context, "Agrega una imagen", Colors.deepOrange, Icons.warning);
       return;
     }
+
     if (_image == null ||
         _usernameController.text.isEmpty ||
         _emailController.text.isEmpty ||
@@ -49,6 +52,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
           context, "El Email no es valido", Colors.redAccent, Icons.warning);
       return;
     }
+    if (_passwordController.text.length < 8) {
+      customSnackBar(
+        context,
+        "La contraseña debe tener al menos 8 caracteres",
+        Colors.redAccent,
+        Icons.error,
+      );
+      return;
+    }
     if (_passwordController.text != _passwordConfirm.text) {
       customSnackBar(context, "Las contraseñas no coinciden", Colors.redAccent,
           Icons.error);
@@ -58,25 +70,52 @@ class _SignUpScreenState extends State<SignUpScreen> {
     String? imageBase64 = await _convertImageToBase64(_image);
     if (imageBase64 == null) return;
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('username', _usernameController.text);
-    await prefs.setString('email', _emailController.text);
-    await prefs.setString('password', _passwordController.text);
-    await prefs.setString('image', imageBase64);
-
-    customSnackBar(
-        context, "Usuario registrado", Colors.lightGreen, Icons.check);
-
-    _usernameController.clear();
-    _emailController.clear();
-    _passwordController.clear();
-    _passwordConfirm.clear();
-    setState(() {
-      _image = null;
-    });
+    authFire!.createUser(_emailController.text, _passwordController.text).then(
+      (result) async {
+        if (result == "success") {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('username', _usernameController.text);
+          await prefs.setString('email', _emailController.text);
+          await prefs.setString('password', _passwordController.text);
+          await prefs.setString('image', imageBase64);
+          customSnackBar(
+            context,
+            "Usuario registrado. Verifica tu correo antes de iniciar sesión.",
+            Colors.lightGreen,
+            Icons.check,
+          );
+          _usernameController.clear();
+          _emailController.clear();
+          _passwordController.clear();
+          _passwordConfirm.clear();
+          setState(() {
+            _image = null;
+          });
+        } else if (result == "email_exists") {
+          customSnackBar(
+            context,
+            "El correo ya está en uso.",
+            Colors.redAccent,
+            Icons.error,
+          );
+        } else {
+          customSnackBar(
+            context,
+            "Ocurrió un error al registrar el usuario.",
+            Colors.redAccent,
+            Icons.error,
+          );
+        }
+      },
+    );
   }
 
   @override
+  initState() {
+    super.initState();
+    authFire = AuthFirebase();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -172,4 +211,3 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-
