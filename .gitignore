@@ -52,4 +52,4 @@ app.*.map.json
 /windows/
 /web/
 .pubspec.lock
-/lib/firebase.json
+/lib/firebase_options.dart
