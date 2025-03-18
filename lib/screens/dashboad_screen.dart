@@ -192,7 +192,7 @@ class _DashboadScreenState extends State<DashboadScreen> {
             ),
             buildThemeTile(
               context,
-              icon: Icons.nightlight_round,
+              icon: Icons.pets,
               text: "Tema Púrpura Oscuro",
               themeKey: "purple",
               theme: ThemeSettings.purpleDarkTheme(),
