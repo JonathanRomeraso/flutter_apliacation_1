@@ -9,6 +9,7 @@ import 'package:flutter_application_1/practica_figma/screens/splash_screen_figma
 import 'package:flutter_application_1/screens/dashboad_screen.dart';
 import 'package:flutter_application_1/screens/list_students_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
+import 'package:flutter_application_1/screens/todo_firebase_screen.dart';
 import 'package:flutter_application_1/screens/todo_screen.dart';
 //import 'package:flutter_application_1/utils/auth_preferences.dart';
 import 'package:flutter_application_1/utils/global_values.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
                 "/Place": (context) => PlaceScreen(),
                 "/splash": (context) => SplashScreenFigma(),
                 "/todo": (context) => const TodoScreen(),
+                "/todoFirebase": (context) => const TodoFirebaseScreen(),
                 "/signUp": (context) => const SignUpScreen(),
                 "/login": (context) => const LoginScreen(),
               },

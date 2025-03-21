@@ -41,7 +41,7 @@ class _TodoScreenState extends State<TodoScreen> {
               //SE procesa antes de generar
               future: database!.SELECT(),
               builder: (context, AsyncSnapshot<List<TodoModel>> snapshot) {
-                print("Datos cargados: ${snapshot.data}");
+                //print("Datos cargados: ${snapshot.data}");
 
                 if (snapshot.hasError) {
                   return Center(

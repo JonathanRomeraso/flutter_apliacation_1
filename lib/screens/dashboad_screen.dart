@@ -135,6 +135,13 @@ class _DashboadScreenState extends State<DashboadScreen> {
           subtitle: Text("Task List"),
           trailing: Icon(Icons.chevron_right),
         ),
+        ListTile(
+          onTap: () => Navigator.pushNamed(context, "/todoFirebase"),
+          leading: Icon(Icons.task),
+          title: Text("Todo Firebase"),
+          subtitle: Text("Task List Firebase"),
+          trailing: Icon(Icons.chevron_right),
+        ),
         const Divider(),
         SwitchListTile(
           value: _isSessionActive,
