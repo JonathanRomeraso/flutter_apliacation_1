@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/firebase_options.dart';
 import 'package:flutter_application_1/practica_figma/screens/home_screen.dart';
 import 'package:flutter_application_1/practica_figma/screens/place_screen.dart';
+import 'package:flutter_application_1/screens/detail_popular_screen.dart';
 import 'package:flutter_application_1/screens/login_screen.dart';
 import 'package:flutter_application_1/practica_dos/screens/sign_up_screen.dart';
 import 'package:flutter_application_1/practica_figma/screens/splash_screen_figma.dart';
 import 'package:flutter_application_1/screens/dashboad_screen.dart';
 import 'package:flutter_application_1/screens/list_students_screen.dart';
+import 'package:flutter_application_1/screens/popular_screen.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/screens/todo_firebase_screen.dart';
 import 'package:flutter_application_1/screens/todo_screen.dart';
@@ -54,7 +56,9 @@ class MyApp extends StatelessWidget {
                 "/todo": (context) => const TodoScreen(),
                 "/todoFirebase": (context) => const TodoFirebaseScreen(),
                 "/signUp": (context) => const SignUpScreen(),
+                "/popular": (context) => const PopularScreen(),
                 "/login": (context) => const LoginScreen(),
+                "/detail": (context) =>  DetailPopularScreen(),
               },
               title: 'Material App',
               //home: isLogged ? const DashboadScreen() : const LoginScreen(),

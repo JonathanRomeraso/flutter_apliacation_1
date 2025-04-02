@@ -137,9 +137,16 @@ class _DashboadScreenState extends State<DashboadScreen> {
         ),
         ListTile(
           onTap: () => Navigator.pushNamed(context, "/todoFirebase"),
-          leading: Icon(Icons.task),
+          leading: Icon(Icons.task_alt),
           title: Text("Todo Firebase"),
           subtitle: Text("Task List Firebase"),
+          trailing: Icon(Icons.chevron_right),
+        ),
+        ListTile(
+          onTap: () => Navigator.pushNamed(context, "/popular"),
+          leading: Icon(Icons.movie_creation_outlined),
+          title: Text("Popular Movies"),
+          subtitle: Text("Movies List"),
           trailing: Icon(Icons.chevron_right),
         ),
         const Divider(),
