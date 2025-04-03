@@ -51,6 +51,8 @@ dependencies:
   firebase_auth: ^5.5.1
   cloud_firestore: ^5.6.5
   dio: ^5.8.0+1
+  youtube_player_iframe: ^5.2.1
+  flutter_rating: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +79,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/Gif/
     - assets/PracticaFigma/avatar/
     - assets/PracticaFigma/icons/
     - assets/PracticaFigma/icons/navigation/

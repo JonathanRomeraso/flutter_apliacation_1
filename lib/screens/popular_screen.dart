@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/apis/popular_api.dart';
 import 'package:flutter_application_1/models/popular_model.dart';
-import 'package:flutter_application_1/screens/detail_popular_screen.dart';
+//import 'package:flutter_application_1/screens/detail_popular_screen.dart';
 
 class PopularScreen extends StatefulWidget {
   const PopularScreen({super.key});
@@ -66,22 +66,24 @@ class _PopularScreenState extends State<PopularScreen> {
         height: 200,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-      
+
           /*image: DecorationImage(
             image: NetworkImage(
                 'https://image.tmdb.org/t/p/w500${popular.posterPath}'),
             fit: BoxFit.cover,
           ),*/
-          
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: FadeInImage(
-            fadeInDuration:  Duration(seconds: 3),
-            placeholder: const AssetImage('assets/Gif/loading.gif'),
-            image: NetworkImage(
-                'https://image.tmdb.org/t/p/w500${popular.posterPath}'),
-            fit: BoxFit.cover,          
+          child: Hero(
+            tag: 'https://image.tmdb.org/t/p/w500/${popular.posterPath}',
+            child: FadeInImage(
+              fadeInDuration: Duration(seconds: 3),
+              placeholder: const AssetImage('assets/Gif/loading.gif'),
+              image: NetworkImage(
+                  'https://image.tmdb.org/t/p/w500/${popular.posterPath}'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
